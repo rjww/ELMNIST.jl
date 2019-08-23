@@ -3,6 +3,10 @@ uuid = "691bc53a-c2f5-11e9-2668-11523456a14a"
 authors = ["Robert Woods"]
 version = "0.1.0"
 
+[deps]
+ExtremeLearningMachine = "6d65e39c-8f19-11e9-3d94-a754ccec8108"
+MLDatasets = "eb30cadb-4394-5ae3-aed4-317e484a6458"
+
 [compat]
 julia = "1"
 

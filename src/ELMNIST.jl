@@ -1,5 +1,10 @@
 module ELMNIST
 
-greet() = print("Hello World!")
+import ExtremeLearningMachine
+import MLDatasets
+
+include("dataset.jl")
+
+export download, testdata, traindata
 
 end # module
