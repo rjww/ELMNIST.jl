@@ -2,6 +2,7 @@ module ELMNIST
 
 import ExtremeLearningMachine
 import MLDatasets
+import Random
 
 include("dataset.jl")
 

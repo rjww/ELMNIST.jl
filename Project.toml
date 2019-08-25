@@ -6,6 +6,7 @@ version = "0.1.0"
 [deps]
 ExtremeLearningMachine = "6d65e39c-8f19-11e9-3d94-a754ccec8108"
 MLDatasets = "eb30cadb-4394-5ae3-aed4-317e484a6458"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
 julia = "1"
