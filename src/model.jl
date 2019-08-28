@@ -1,16 +1,43 @@
 const SLFN = ExtremeLearningMachine.SLFN
 const ActivationFunction = ExtremeLearningMachine.ActivationFunction
 
-function train_model(n_samples::Int,
-                     filtering_labels::Vector{Int},
-                     n_neurons::Int,
-                     activation_function::ActivationFunction)
-    X, T = traindata(n_samples, filtering_labels)
-    d, N = size(X)
-    q = length(filtering_labels)
+function prepare_model(::Type{T},
+                       n_neurons::Int,
+                       activation_function::ActivationFunction) where {T <: Number}
+    train(T, traindata()..., n_neurons, activation_function)
+end
 
-    elm = ELM{Float64}(d, q, n_neurons, activation_function)
-    add_data!(elm, X, T)
+function prepare_model(::Type{T},
+                       n_samples::Int,
+                       n_neurons::Int,
+                       activation_function::ActivationFunction) where {T <: Number}
+    train(T, traindata(n_samples)..., n_neurons, activation_function)
+end
+
+function prepare_model(::Type{T},
+                       filtering_labels::Vector{Int},
+                       n_neurons::Int,
+                       activation_function::ActivationFunction) where {T <: Number}
+    train(T, traindata(filtering_labels)..., n_neurons, activation_function)
+end
+
+function prepare_model(::Type{T},
+                       n_samples::Int,
+                       filtering_labels::Vector{Int},
+                       n_neurons::Int,
+                       activation_function::ActivationFunction) where {T <: Number}
+    train(T, traindata(n_samples, filtering_labels)..., n_neurons, activation_function)
+end
+
+function train(::Type{T1},
+               samples::T2,
+               targets::T3,
+               n_neurons::Int,
+               activation_function::ActivationFunction) where {T1 <: Number, T2, T3 <: AbstractMatrix}
+    d, N = size(samples)
+    q, _ = size(targets)
+    elm = ELM{T1}(d, q, n_neurons, activation_function)
+    add_data!(elm, samples, targets)
     solve(elm)
 end
 
