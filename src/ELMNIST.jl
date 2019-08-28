@@ -7,8 +7,10 @@ import Random
 include("dataset.jl")
 include("model.jl")
 
-export download, testdata, traindata,
+export ELM,
        Linear, ReLU, Sigmoid, Square, Tanh,
-       train_model, calculate_error
+       add_data!, solve, predict,
+       prepare_model, calculate_error,
+       download, testdata, traindata
 
 end # module
